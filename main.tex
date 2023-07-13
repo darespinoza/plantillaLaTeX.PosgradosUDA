@@ -1,0 +1,203 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plantilla Reporte Cientifico Paper Universidad del Azuay
+% Creado por Darwin Darío Espinoza Saquicela
+% Junio 2023
+% IERSE -- Universidad del Azuay
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{article}
+% Para ocultar los recuadros en referencias y links, agregar el parametro "hidelinks"
+
+% Paquetes usados
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage[titles]{tocloft}
+\usepackage{apacite}
+\usepackage{graphicx}
+\usepackage{sectsty}
+\usepackage{geometry}
+\usepackage{ragged2e}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{needspace}
+\usepackage[absolute]{textpos}
+\usepackage[spanish,mexico]{babel}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage{tabularray}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath,empheq}
+\usepackage{pdfpages}
+\usepackage{lipsum}     % Generar texto de ejemplo
+
+\selectlanguage{spanish}
+\setmainfont{Times New Roman}
+\title{Identificación de patrones de movilidad urbana y su relación con variables meteorológicas registradas en el cantón Cuenca}
+\author{Darwin Darío Espinoza Saquicela}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Margenes -- Configuracion de pagina
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{
+  left=1.18in,   % Adjust the left margin
+  right=1.18in,  % Adjust the right margin
+  top=0.98in,    % Adjust the top margin
+  bottom=0.98in,  % Adjust the bottom margin
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Especificar tamaños de fuente para comandos LateX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand{\huge}{\@setfontsize\huge{22}{26}}
+\renewcommand{\Large}{\@setfontsize\Large{16}{19}}
+\renewcommand{\large}{\@setfontsize\large{14pt}{17}}
+\renewcommand{\small}{\@setfontsize\small{11pt}{13pt}}
+\renewcommand{\normalsize}{%
+    \@setfontsize\normalsize{12pt}{14.5}%
+    \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+    \abovedisplayshortskip \z@ \@plus3\p@
+    \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+    \belowdisplayskip \abovedisplayskip
+    \let\@listi\@listI}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Quitar numeracion de secciones, subsecciones y subsubsecc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\section}{\normalfont\Large\bfseries}{}{0pt}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{}{0pt}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{}{0pt}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Quitar numeracion de secciones, subsecciones y subsubsecc
+% En tabla de contenidos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand\numberline[1]{}
+% Linea punteada para secciones
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cabecera y pie de pagina
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{azulUDA}{HTML}{4472c4} % Color para elementos de pie de pagina
+\fancyhf{}                          % Borrar cabecera/pie existente
+
+% Cabecera de pagina
+\rhead{
+    \begin{textblock}{0}(11.3, 0.3)
+        \includegraphics[height=0.7in]{img/logo_posgrados23.jpg}
+    \end{textblock}
+}
+\renewcommand{\headrulewidth}{0pt}  % Quitar linea vertical de la cabecera
+
+% Pie de pagina
+\lfoot{\textcolor{azulUDA}{Maestría en Matemática Aplicada}}
+\rfoot{\textcolor{azulUDA}{Pág. \MakeUppercase{\thepage}}}
+\renewcommand{\footrulewidth}{0.1pt} % Ancho de la linea horizontal
+\renewcommand{\footrule}{\color{azulUDA}\hrule width\headwidth height\footrulewidth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inicio de documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+    % CARATULA
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \input{caratula}
+    
+    % Agradecimientos
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \pagenumbering{roman}
+    \newpage
+    \input{agradecimiento}
+    
+    % DEDICATORIA
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newpage
+    \input{dedicatoria}
+    
+    % INDICE
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newpage
+    \renewcommand\contentsname{ÍNDICE}
+    \tableofcontents
+    
+    % INDICE DE FIGURAS
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newpage
+    \renewcommand{\listfigurename}{ÍNDICE DE FIGURAS}
+    \listoffigures
+    
+    % INDICE DE TABLAS
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newpage
+    \renewcommand{\listtablename}{ÍNDICE DE TABLAS}
+    \listoftables
+    
+
+    % TITULO DOCUMENTO
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newpage
+    \pagenumbering{arabic}
+    \input{titulo_documento}
+
+    % RESUMEN ESCRITO EN LATEX
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \input{resumen}
+    \needspace{3\baselineskip} % Que existan al menos 3 espacios para ingresar seccion
+    
+    % ABSTRACT ESCRITO EN LATEX
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \input{abstract}
+    \needspace{3\baselineskip}
+
+    % RESUMEN Y ABSTRACT FIRMADO POR IDIOMAS DESDE PDF
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newpage
+    \section{RESUMEN FIRMADO POR DPTO. DE IDIOMAS}
+    \includepdf[pages=1]{doc/resumen_asbstrac_idiomas.pdf}
+    \newpage
+    \section{ABSTRACT FIRMADO POR DPTO. DE IDIOMAS}
+    \includepdf[pages=2]{doc/resumen_asbstrac_idiomas.pdf}
+    
+    % INTRODUCCION
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \input{introduccion}
+    \needspace{3\baselineskip}
+    
+    % REVISION BIBLIOGRAFICA
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \input{revbibliograf}
+    \needspace{3\baselineskip}
+    
+    % METODOLOGIA
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \input{metodologia}
+    \needspace{3\baselineskip}
+    
+    % RESULTADOS
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \input{resultados}
+    \needspace{3\baselineskip}
+    
+    % DISCUSION
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \input{discusion}
+    \needspace{3\baselineskip}
+    
+    % CONCLUSIONES
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \input{conclusiones}
+    \needspace{3\baselineskip}
+    
+    % REFERENCIAS
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \renewcommand\refname{REFERENCIAS}
+    \bibliographystyle{apacite} 
+    \bibliography{mibibliografia}
+
+\end{document}
